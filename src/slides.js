@@ -1,0 +1,132 @@
+// Lane themes match the swimlane integration-flow diagram.
+export const LANES = {
+  CMS: { code: 'CMS', name: 'Change Management System', color: '#0b4ea2', soft: '#eef4fc', icon: '👥' },
+  ERA: { code: 'ERA', name: 'Engineering Requirements Application', color: '#1f7a3a', soft: '#eef8f1', icon: '📋' },
+  DCR: { code: 'DCR', name: 'Design Change Request', color: '#e4571e', soft: '#fdf0e8', icon: '🛠️' },
+  OMS: { code: 'OMS', name: 'Operations Management System', color: '#6b2fa0', soft: '#f4eefb', icon: '⚙️' },
+}
+
+// The real EZVent M-202 scenario (CAR 14914 — Power Inlet fuse) walked through the flow.
+export const SLIDES = [
+  {
+    type: 'cover',
+    lane: 'CMS',
+    kicker: 'INTEGRATION FLOW IN ACTION',
+    title: 'CMS ↔ ERA ↔ DCR ↔ OMS',
+    subtitle: 'A real corrective-action scenario on the EZVent M-202 ventilator',
+    scenario: 'CAR 14914 — Power Inlet Fuse',
+    blurb: 'During power-cord disconnection on device 025, the power fuse came out of its place and one fuse broke. Follow how this single field issue travels end-to-end — from a Corrective Action, into engineering requirements, through a design change, to verified implementation — with feedback loops closing the change.',
+  },
+  {
+    lane: 'CMS', step: 1,
+    chapter: 'Change Management',
+    title: 'A Corrective Action is raised',
+    image: 'images/02-car-management.jpeg',
+    caption: 'CAR Management R&D — Corrective Action Request 14914',
+    points: [
+      ['CAR 14914', 'Raised on the EZVent project, Source: Improvement, Priority: High.'],
+      ['The problem', '"During power cord disconnection, the power fuse was disconnected from its place and one of the fuses was broken." Affected device: 025.'],
+      ['Status', 'In-Process — with Investigation, Actions and Verification/Validation tabs tracking the lifecycle.'],
+    ],
+    mapsTo: 'Create Change Request → Documentation Check → Requirement Decision',
+  },
+  {
+    lane: 'CMS', step: 3,
+    chapter: 'Change Management',
+    title: 'An action is assigned to Engineering',
+    image: 'images/01-action-assignment.jpeg',
+    caption: 'Action Assignment — Action 5150 → System Engineering',
+    points: [
+      ['Action 5150', 'Assigned to the System Engineering functional team for review.'],
+      ['Scope', 'Review the mechanical design of the power inlet unit integration with the backcover, the power cable, and its fixation — keeping the required solution rigidity.'],
+      ['Impact flags', 'This action impacts the Risk Management File, Usability File and IFU — the trigger to convert it into a CAR requirement.'],
+    ],
+    mapsTo: 'Requirement Decision → Convert action to CAR requirement',
+  },
+  {
+    lane: 'CMS', step: 5,
+    chapter: 'Change Management',
+    title: 'Engineering responds with a design fix',
+    image: 'images/03-action-response.jpeg',
+    caption: 'Action Response — objective evidence & proposed solution',
+    points: [
+      ['Proposed fix', 'Fuse fixation secured by adding a cover with a screw fastener so it stays put while the cord is disconnected.'],
+      ['Misuse prevention', 'A clamp is integrated into the patient handle to prevent unwanted motion of the power cord and accidental disconnection.'],
+      ['Next', 'The new design version is ready for prototyping to finalize verification and integration testing — handed off to ERA.'],
+    ],
+    mapsTo: 'Send / Update Requirement → hand off "Requirement action" to ERA',
+  },
+  {
+    lane: 'ERA', step: 7,
+    chapter: 'Engineering Requirements',
+    title: 'The CAR lands in ERA',
+    image: 'images/04-projects.jpeg',
+    caption: 'ERA Projects — EZVent M-202 (R&D Project)',
+    points: [
+      ['Receive CAR', 'The corrective action enters the Engineering Requirements Application against project EZVent M-202.'],
+      ['Project surface', 'PRD, Conflict Resolving, Allocations, Sub-System Req/Design, Verification, Compliance, Documentation, Traceability Matrix.'],
+      ['Owner', 'Project Manager and Technical Lead are assigned — the CAR is now a managed engineering requirement.'],
+    ],
+    mapsTo: 'Receive CAR in ERA → Import as system requirement → Link to project/device',
+  },
+  {
+    lane: 'ERA', step: 8,
+    chapter: 'Engineering Requirements',
+    title: 'Link & analyze across requirements',
+    image: 'images/05-subsystem-req.jpeg',
+    caption: 'Electrical Sub-System Requirements — allocation & linking',
+    points: [
+      ['Allocated requirements', '846 total · 505 linked · 341 new — the CAR requirement joins this traceable set.'],
+      ['Categories', 'PRD, Standards, Usability, Sub-Systems and a dedicated CAR Requirements bucket.'],
+      ['Traceability', 'The change is linked down to sub-system and design elements so nothing is lost.'],
+    ],
+    mapsTo: 'Link to system / subsystem requirements → Maintain traceability',
+  },
+  {
+    lane: 'ERA', step: 9,
+    chapter: 'Engineering Requirements',
+    title: 'Impact assessment — it hits the design',
+    image: 'images/06-power-inlet.jpeg',
+    caption: 'Component 02.02.01.02 Power Inlet — Overcurrent Protection',
+    points: [
+      ['Affected component', 'Power Management → AC/DC → Power Entry → Power Inlet (02.02.01.02).'],
+      ['New specs', '14.01 — housing shall have a locked fuse holder for at least a single fuse. 14.02 — fuse rating per product rated current.'],
+      ['Standards trace', 'Linked to IEC 60601-1:2020 (ESSR/MSSR) — decision: this requirement affects design → YES.'],
+    ],
+    mapsTo: 'Impact Assessment → Decision "affects design?" = YES → DCR',
+    decision: 'YES — affects design',
+  },
+  {
+    lane: 'DCR', step: 12,
+    chapter: 'Design Change',
+    title: 'Design change on the Power Inlet',
+    image: 'images/08-subsystem-design.jpeg',
+    caption: 'Sub-System Design (HDD) — Power Inlet design options',
+    points: [
+      ['Design entry', 'A design option is created for the Power Inlet with manufacturer, part number and attachments.'],
+      ['Concrete spec', 'Required plug type: panel-mounted C14 plug; earth terminal impedance ≤ 100 mΩ; overcurrent protection carried from the requirement.'],
+      ['Review', 'Technical review, design-impact, risk and cost/schedule analysis feed the DCR decision.'],
+    ],
+    mapsTo: 'Create DCR → Review & Analysis → Risk & Cybersecurity → Approve',
+    decision: 'APPROVED',
+  },
+  {
+    lane: 'OMS', step: 19,
+    chapter: 'Operations',
+    title: 'Implement & verify the change',
+    image: 'images/09-verification.jpeg',
+    caption: 'Sub-Systems Design Verification — Hardware Verification',
+    points: [
+      ['Implementation', 'Approved DCR drives document, BOM and drawing updates per work instructions.'],
+      ['Verification', 'Hardware Verification confirms the new fuse-holder / cover / clamp design meets the requirement.'],
+      ['Evidence', 'Objective evidence is collected and the change is verified for effectiveness before closure.'],
+    ],
+    mapsTo: 'Receive Approved DCR → Implement → Verify Implementation → Close',
+  },
+  // ----- Closing: the swimlane diagram shown full-screen, one lane in focus per stage -----
+  { type: 'tour', lane: 'CMS', focus: 'CMS', title: 'CMS — Change Management', note: 'CAR 14914 is raised, investigated, turned into a requirement, approved, then verified & closed.' },
+  { type: 'tour', lane: 'ERA', focus: 'ERA', title: 'ERA — Engineering Requirements', note: 'The CAR is received, linked & analyzed, and impact-assessed — does it affect the design?' },
+  { type: 'tour', lane: 'DCR', focus: 'DCR', title: 'DCR — Design Change', note: 'A design change is created, reviewed, risk & cyber-assessed, then approved or rejected.' },
+  { type: 'tour', lane: 'OMS', focus: 'OMS', title: 'OMS — Operations', note: 'The approved change is implemented, verified with evidence, and the implementation is closed.' },
+  { type: 'tour', lane: 'OMS', focus: 'all', title: 'The full integration flow', note: 'Solid arrows = main flow · dashed = feedback loops that keep ERA & CMS in sync and close the change.' },
+]
