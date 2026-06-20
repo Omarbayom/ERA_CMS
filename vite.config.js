@@ -4,4 +4,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/ERA_CMS/",
+  build: {
+    outDir: "docs"
+  }
 });
