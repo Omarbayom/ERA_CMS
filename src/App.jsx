@@ -3,6 +3,7 @@ import { SLIDES, LANES } from './slides.js'
 import DiagramStage from './DiagramStage.jsx'
 
 const LANE_ORDER = ['CMS', 'ERA', 'DCR', 'OMS']
+const BASE = import.meta.env.BASE_URL // respects vite `base` (e.g. /ERA_CMS/) on GitHub Pages
 
 function FlowRibbon({ activeLane }) {
   return (
@@ -73,7 +74,7 @@ function ContentSlide({ slide }) {
       </div>
       <div className="media-col">
         <figure className="shot">
-          <img src={slide.image} alt={slide.caption} loading="eager" />
+          <img src={BASE + slide.image} alt={slide.caption} loading="eager" />
         </figure>
         <div className="caption">{slide.caption}</div>
       </div>

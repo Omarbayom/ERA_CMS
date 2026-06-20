@@ -59,7 +59,7 @@ export default function DiagramStage({ focus, title, note, laneColor }) {
       <div className="tour-stage" ref={wrapRef}>
         <iframe
           ref={frameRef}
-          src="diagram/index.html"
+          src={import.meta.env.BASE_URL + 'diagram/index.html'}
           title="Integration flow diagram"
           onLoad={() => { setReady(true); requestAnimationFrame(fit) }}
         />
