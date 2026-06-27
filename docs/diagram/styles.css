@@ -1,0 +1,299 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f5f7fb;
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 24px;
+  overflow-x: auto;
+}
+
+.title-block {
+  width: 7500px;
+  margin: 0 auto 16px;
+  text-align: center;
+}
+
+.title-block h1 {
+  margin: 0;
+  color: #0b1f3f;
+  font-size: 34px;
+  letter-spacing: 4px;
+  font-weight: 800;
+}
+
+.title-block p {
+  margin: 7px 0 0;
+  color: #4b5563;
+  font-size: 17px;
+}
+
+.controls {
+  margin-top: 12px;
+}
+
+.fit-btn {
+  appearance: none;
+  cursor: pointer;
+  padding: 9px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0b4ea2;
+  background: #ffffff;
+  border: 1.5px solid #0b4ea2;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+  transition: background 0.15s, color 0.15s;
+}
+
+.fit-btn:hover,
+.fit-btn[aria-pressed="true"] {
+  background: #0b4ea2;
+  color: #ffffff;
+}
+
+/* Wrapper that holds the (optionally scaled) diagram */
+.diagram-stage {
+  width: 7500px;
+  margin: 0 auto;
+}
+
+body.fit-mode .page {
+  overflow-x: hidden;
+}
+
+body.fit-mode .title-block {
+  width: auto;
+}
+
+/* Fixed canvas (1:1 with SVG viewBox) */
+.diagram {
+  position: relative;
+  width: 7500px;
+  height: 1200px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #d3dce8;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
+/* Lane backgrounds */
+.lane-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #d7e0ec;
+}
+
+.cms-bg { top: 240px; height: 380px; background: #f3f8ff; }
+.era-bg { top: 620px; height: 250px; background: #f3fbf5; }
+.oms-bg { top: 870px; height: 250px; background: #f8f3ff; border-bottom: 1px solid #d7e0ec; }
+
+/* Left lane labels */
+.lane-label {
+  position: absolute;
+  left: 0;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #cfd8e6;
+  background: rgba(255, 255, 255, 0.78);
+  z-index: 6;
+  text-align: center;
+}
+
+.cms-label { top: 240px; height: 380px; color: #0b4ea2; }
+.era-label { top: 620px; height: 250px; color: #1f7a3a; }
+.oms-label { top: 870px; height: 250px; color: #6b2fa0; }
+
+.lane-code { font-size: 26px; font-weight: 800; line-height: 1; }
+.lane-icon { font-size: 34px; margin: 9px 0; }
+.lane-name { font-size: 13.5px; line-height: 1.25; font-weight: 700; }
+
+/* Generic node */
+.node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px 9px;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.14;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 9px;
+  box-shadow: 0 3px 9px rgba(15, 23, 42, 0.10);
+  z-index: 10;
+}
+
+.n-cms { border-color: #b9cbea; border-left: 6px solid #0b4ea2; color: #0b1f3f; }
+.n-era { border-color: #b9dec3; border-left: 6px solid #1f7a3a; color: #12351d; }
+.n-oms { border-color: #d2bee8; border-left: 6px solid #6b2fa0; color: #28113d; }
+
+/* Status chips (requirement status in CMS) */
+.n-status {
+  background: #eaf1fb;
+  border: 1.5px dashed #0b4ea2;
+  border-radius: 999px;
+  color: #0b3a78;
+  font-size: 12px;
+}
+
+/* Rejected outcomes */
+.n-reject {
+  background: #fdecec;
+  border: 1.5px solid #c0392b;
+  color: #8e2a20;
+  border-radius: 9px;
+}
+
+/* Related DCR records */
+.n-dcr {
+  background: #f5eefc;
+  border: 1.5px solid #6b2fa0;
+  color: #3d1a5e;
+  border-radius: 9px;
+}
+
+/* Closed terminal */
+.n-close {
+  background: #0b4ea2;
+  border: 1.5px solid #0b4ea2;
+  color: #ffffff;
+}
+
+/* Decisions */
+.decision {
+  position: absolute;
+  background: #ffffff;
+  transform: rotate(45deg);
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  box-shadow: 0 3px 9px rgba(15, 23, 42, 0.08);
+}
+
+.decision span {
+  transform: rotate(-45deg);
+  text-align: center;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 1.08;
+  width: 150%;
+}
+
+.d-cms { border: 2px solid #0b4ea2; color: #0b1f3f; }
+.d-era { border: 2px solid #1f7a3a; color: #12351d; }
+
+/* SVG arrows */
+.arrows {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.arrows path {
+  fill: none;
+  stroke-width: 2.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.blue { stroke: #0b4ea2; }
+.green { stroke: #1f7a3a; }
+.purple { stroke: #6b2fa0; }
+.red { stroke: #c0392b; }
+
+.dashed { stroke-dasharray: 8 7; stroke-width: 2; }
+
+.head { stroke: none; }
+.head.blue { fill: #0b4ea2; }
+.head.green { fill: #1f7a3a; }
+.head.purple { fill: #6b2fa0; }
+.head.red { fill: #c0392b; }
+
+.svg-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.blue-text { fill: #0b4ea2; }
+.green-text { fill: #1f7a3a; }
+.purple-text { fill: #6b2fa0; }
+.red-text { fill: #c0392b; }
+
+@media print {
+  body { background: #ffffff; }
+  .page { padding: 0; overflow: visible; }
+  .diagram { box-shadow: none; transform: scale(0.18); transform-origin: top left; }
+}
+
+/* Presentation trace mode: used by the final slide to follow the actual flow lines. */
+body.presentation-trace {
+  background: #ffffff;
+}
+
+body.presentation-trace .page {
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+body.presentation-trace .title-block {
+  display: none;
+}
+
+body.presentation-trace .diagram-stage,
+body.presentation-trace .diagram {
+  margin: 0;
+}
+
+body.presentation-trace .arrows path {
+  opacity: 0.12;
+  stroke-width: 2.6;
+}
+
+body.presentation-trace .arrows path.trace-path {
+  opacity: 1;
+  stroke-width: 5.2;
+  stroke-dasharray: var(--trace-len);
+  stroke-dashoffset: var(--trace-len);
+  animation: traceDraw var(--trace-duration, 1.2s) ease-in-out var(--trace-delay, 0s) forwards;
+  filter: drop-shadow(0 0 9px rgba(15, 23, 42, 0.26));
+}
+
+body.presentation-trace .arrows path.trace-done {
+  stroke-dashoffset: 0;
+  opacity: 0.92;
+}
+
+body.presentation-trace .head {
+  opacity: 0.12;
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+body.presentation-trace .head.trace-head,
+body.presentation-trace .head.trace-done {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(15, 23, 42, 0.22));
+}
+
+@keyframes traceDraw {
+  from { stroke-dashoffset: var(--trace-len); }
+  to { stroke-dashoffset: 0; }
+}
