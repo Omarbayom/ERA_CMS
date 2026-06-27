@@ -173,18 +173,74 @@ body {
 }
 .tour-title { font-weight: 800; font-size: 19px; flex: none; }
 .tour-note { font-size: 13.5px; color: var(--muted); flex: 1; min-width: 0; }
-.tour-full {
+.tour-full,
+.tour-mini {
   flex: none; border: none; cursor: pointer; background: #0f1b2d; color: #fff;
-  font-weight: 700; font-size: 13px; padding: 9px 16px; border-radius: 9px; transition: transform .15s ease;
+  font-weight: 700; font-size: 13px; padding: 9px 16px; border-radius: 9px; transition: transform .15s ease, background .15s ease;
 }
-.tour-full:hover { transform: translateY(-1px); }
+.tour-mini { width: 38px; padding: 9px 0; font-size: 17px; line-height: 1; }
+.tour-full:hover,
+.tour-mini:hover { transform: translateY(-1px); background: #162943; }
+.tour-explore .tour-full,
+.tour-explore .tour-mini { background: #0b4ea2; }
 
-.tour-stage { position: relative; flex: 1; min-height: 0; overflow: hidden; background: #fff; }
+.tour-trace-hint,
+.tour-explore-hint {
+  flex: none;
+  font-size: 13px;
+  font-weight: 900;
+  color: #0f1b2d;
+  background: rgba(255, 255, 255, .86);
+  border: 1px solid rgba(15, 27, 45, .16);
+  border-radius: 999px;
+  padding: 8px 14px;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(15, 27, 45, .10);
+}
+.tour-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+}
+.tour-trace .tour-stage {
+  overflow: hidden;
+  background: #fff;
+}
+.tour-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 .tour-stage iframe {
   position: absolute; top: 0; left: 0; border: 0; background: #fff;
-  transform-origin: 0 0; transition: transform .6s cubic-bezier(.35, .7, .2, 1);
+  transform-origin: 0 0; transition: transform .6s cubic-bezier(.35, .7, .2, 1), left .6s cubic-bezier(.35, .7, .2, 1), top .6s cubic-bezier(.35, .7, .2, 1);
+}
+.tour-pan-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  cursor: default;
+  touch-action: none;
+}
+.tour-explore .tour-pan-layer {
+  pointer-events: auto;
+  cursor: grab;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(11, 78, 162, .025), rgba(255,255,255,0) 42%);
+}
+.tour-explore .tour-pan-layer:active { cursor: grabbing; }
+.tour-explore .tour-trace-hint,
+.tour-explore-hint {
+  background: #0b4ea2;
+  color: #fff;
+  border-color: rgba(255,255,255,.28);
 }
 .tour-stage:fullscreen { background: #fff; }
+.tour-stage:fullscreen .tour-canvas { min-height: 100vh; }
 
 @media (max-width: 1024px) {
   .tour-note { display: none; }
