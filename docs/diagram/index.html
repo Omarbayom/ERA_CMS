@@ -3,400 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Integration Flow: CMS ↔ ERA ↔ DCR ↔ OMS</title>
+  <title>CMS ↔ ERA ↔ OMS Integration Flow</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="page">
     <header class="title-block">
-      <h1>INTEGRATION FLOW: CMS ↔ ERA ↔ DCR ↔ OMS</h1>
-      <p>End-to-end integration from Change Management to Engineering Requirements, Design Change and Operations with feedback loops</p>
+      <h1>CMS ↔ ERA ↔ OMS INTEGRATION FLOW</h1>
+      <p>Change request, requirement analysis, conflict &amp; risk review, OMS testing, design verification, and final CMS closure</p>
+      <div class="controls">
+        <button type="button" id="fitToggle" class="fit-btn" aria-pressed="false">Fit to screen</button>
+      </div>
     </header>
 
-    <section class="diagram" aria-label="CMS ERA DCR OMS integration flow diagram">
-      <!-- Feedback loop labels -->
-      <div class="feedback fb1">
-        <strong>FEEDBACK LOOP 1</strong>
-        <span>ERA feedback to CMS</span>
-        <em>(No design impact)</em>
-      </div>
-
-      <div class="feedback fb2">
-        <strong>FEEDBACK LOOP 2</strong>
-        <span>ERA status update to CMS</span>
-        <em>(DCR triggered)</em>
-      </div>
-
-      <div class="feedback fb3">
-        <strong>FEEDBACK LOOP 3</strong>
-        <span>OMS implementation status to ERA</span>
-        <em>(Traceability update)</em>
-      </div>
-
-      <div class="feedback fb4">
-        <strong>FEEDBACK LOOP 4</strong>
-        <span>Implementation complete to CMS</span>
-        <em>(Closure &amp; effectiveness)</em>
-      </div>
-
-      <!-- Swimlane backgrounds -->
+    <div class="diagram-stage">
+    <section class="diagram" aria-label="CMS ERA OMS integration flow diagram">
       <div class="lane-bg cms-bg"></div>
       <div class="lane-bg era-bg"></div>
-      <div class="lane-bg dcr-bg"></div>
       <div class="lane-bg oms-bg"></div>
 
-      <!-- Left lane labels -->
       <aside class="lane-label cms-label">
-        <div class="lane-code">CMS</div>
-        <div class="lane-icon">👥</div>
+        <div class="lane-code">CMS</div><div class="lane-icon">👥</div>
         <div class="lane-name">Change<br />Management<br />System</div>
       </aside>
-
       <aside class="lane-label era-label">
-        <div class="lane-code">ERA</div>
-        <div class="lane-icon">📋</div>
+        <div class="lane-code">ERA</div><div class="lane-icon">📋</div>
         <div class="lane-name">Engineering<br />Requirements<br />Application</div>
       </aside>
-
-      <aside class="lane-label dcr-label">
-        <div class="lane-code">DCR</div>
-        <div class="lane-icon">👥</div>
-        <div class="lane-name">Design Change<br />Request</div>
-      </aside>
-
       <aside class="lane-label oms-label">
-        <div class="lane-code">OMS</div>
-        <div class="lane-icon">⚙️</div>
+        <div class="lane-code">OMS</div><div class="lane-icon">⚙️</div>
         <div class="lane-name">Operations<br />Management<br />System</div>
       </aside>
 
-      <!-- CMS lane -->
-      <article class="card cms c1">
-        <span class="num">1</span>
-        <h3>Create Change Request</h3>
-        <ul>
-          <li>Create change request</li>
-          <li>Investigate issue</li>
-          <li>Create action</li>
-        </ul>
-      </article>
+      <div class="node n-cms" style="left:195px;top:398px;width:210px;height:64px;">Create Change Request</div>
+      <div class="node n-cms" style="left:495px;top:398px;width:210px;height:64px;">Investigation</div>
+      <div class="node n-cms" style="left:795px;top:398px;width:210px;height:64px;">Create Action</div>
+      <div class="node n-cms" style="left:1125px;top:398px;width:210px;height:64px;">Assign Action to Responsible Team</div>
+      <div class="decision d-cms" style="left:1500px;top:370px;width:120px;height:120px;"><span>Is Action a Requirement?</span></div>
+      <div class="node n-cms" style="left:1785px;top:398px;width:210px;height:64px;">Execute Non-Requirement Action</div>
+      <div class="node n-cms" style="left:2115px;top:398px;width:210px;height:64px;">CMS Verification</div>
+      <div class="decision d-cms" style="left:2490px;top:370px;width:120px;height:120px;"><span>Action Verified?</span></div>
+      <div class="decision d-cms" style="left:840px;top:240px;width:120px;height:120px;"><span>Documentation Impact?</span></div>
+      <div class="node n-dcr" style="left:1152.5px;top:272px;width:155px;height:56px;">Related DCR</div>
+      <div class="node n-cms" style="left:6555px;top:398px;width:210px;height:64px;">Final CMS Review</div>
+      <div class="decision d-cms" style="left:6930px;top:370px;width:120px;height:120px;"><span>All Complete?</span></div>
+      <div class="node n-close" style="left:7187.5px;top:398px;width:205px;height:64px;">Close Change Request<br />CR Status = Closed</div>
+      <div class="node n-status" style="left:1872.5px;top:552px;width:215px;height:56px;">Requirement Status = Under Analysis</div>
+      <div class="node n-status" style="left:3072.5px;top:552px;width:215px;height:56px;">Requirement Status = In Design</div>
+      <div class="node n-dcr" style="left:3882.5px;top:532px;width:155px;height:56px;">Related DCR</div>
+      <div class="node n-status" style="left:5952.5px;top:552px;width:215px;height:56px;">Requirement Status = Failed Verification</div>
+      <div class="node n-status" style="left:6252.5px;top:552px;width:215px;height:56px;">Requirement Status = Verified</div>
+      <div class="node n-era" style="left:1725px;top:713px;width:210px;height:64px;">Rewrite Action as CAR Requirement</div>
+      <div class="node n-era" style="left:2055px;top:713px;width:210px;height:64px;">Conflict Resolution</div>
+      <div class="node n-era" style="left:2385px;top:713px;width:210px;height:64px;">Risk Assessment / Cyber security</div>
+      <div class="decision d-era" style="left:2760px;top:685px;width:120px;height:120px;"><span>Conflict Found?</span></div>
+      <div class="node n-era" style="left:3075px;top:713px;width:210px;height:64px;">Subsystem Requirement</div>
+      <div class="node n-era" style="left:3405px;top:713px;width:210px;height:64px;">Subsystem Design</div>
+      <div class="node n-era" style="left:3855px;top:713px;width:210px;height:64px;">Subsystem Design Risk Analysis / Cyber security</div>
+      <div class="decision d-era" style="left:4290px;top:685px;width:120px;height:120px;"><span>Unacceptable Risk OR Cybersecurity?</span></div>
+      <div class="node n-era" style="left:5445px;top:713px;width:210px;height:64px;">Retrieve Verification Data from OMS</div>
+      <div class="node n-era" style="left:5775px;top:713px;width:210px;height:64px;">Subsystem Design Verification</div>
+      <div class="decision d-era" style="left:6150px;top:685px;width:120px;height:120px;"><span>Verification Passed?</span></div>
+      <div class="node n-oms" style="left:4245px;top:963px;width:210px;height:64px;">Work Standard / Test Plan</div>
+      <div class="node n-oms" style="left:4575px;top:963px;width:210px;height:64px;">Work Order</div>
+      <div class="node n-oms" style="left:4905px;top:963px;width:210px;height:64px;">Execute Test</div>
+      <div class="node n-oms" style="left:5235px;top:963px;width:210px;height:64px;">Store Test Results</div>
+      <div class="node n-reject" style="left:2745px;top:882px;width:150px;height:46px;">CR Rejected</div>
+      <div class="node n-reject" style="left:4635px;top:882px;width:150px;height:46px;">CR Rejected</div>
 
-      <article class="card cms c2">
-        <span class="num">2</span>
-        <h3>Documentation Check</h3>
-        <ul>
-          <li>Check documentation needed</li>
-          <li>Link related DLA</li>
-        </ul>
-      </article>
-
-      <article class="card cms c3">
-        <span class="num">3</span>
-        <h3>Requirement Decision</h3>
-        <ul>
-          <li>Check action type</li>
-          <li>Convert action to CAR requirement</li>
-        </ul>
-      </article>
-
-      <article class="card cms c4">
-        <span class="num">4</span>
-        <h3>Conflict &amp; Approval Check</h3>
-        <ul>
-          <li>Confirm field</li>
-          <li>Admin approval check</li>
-          <li>Resolve conflict</li>
-        </ul>
-      </article>
-
-      <article class="card cms c5">
-        <span class="num">5</span>
-        <h3>Send / Update Requirement</h3>
-        <ul>
-          <li>Submit requirement data</li>
-          <li>Update requirement status</li>
-        </ul>
-      </article>
-
-      <article class="card cms c6">
-        <span class="num">6</span>
-        <h3>Verify &amp; Close Change</h3>
-        <ul>
-          <li>Final OPS review</li>
-          <li>Verify effectiveness</li>
-          <li>Close change request</li>
-        </ul>
-      </article>
-
-      <!-- ERA lane -->
-      <article class="card era e7">
-        <span class="num">7</span>
-        <h3>Receive CAR in ERA</h3>
-        <ul>
-          <li>Receive CAR from CMS</li>
-          <li>Import as system requirement</li>
-          <li>Create CAR requirement</li>
-          <li>Link to project/device</li>
-        </ul>
-      </article>
-
-      <article class="card era e8">
-        <span class="num">8</span>
-        <h3>Link &amp; Analyze</h3>
-        <ul>
-          <li>Link to system requirements</li>
-          <li>Link to subsystem requirements</li>
-          <li>Link to design elements</li>
-          <li>Maintain traceability</li>
-        </ul>
-      </article>
-
-      <article class="card era e9">
-        <span class="num">9</span>
-        <h3>Impact Assessment</h3>
-        <ul>
-          <li>Analyze requirement impact</li>
-          <li>Identify affected areas</li>
-          <li>Technical/design impact</li>
-          <li>Document impact result</li>
-        </ul>
-      </article>
-
-      <div class="decision era-decision">
-        <span>Does<br />requirement<br />affect<br />design?</span>
-      </div>
-
-      <article class="card era e11">
-        <span class="num">11</span>
-        <h3>Update Requirements</h3>
-        <ul>
-          <li>Update/create requirement</li>
-          <li>Update traceability</li>
-          <li>Update baseline if needed</li>
-          <li>Notify stakeholders</li>
-        </ul>
-      </article>
-
-      <!-- DCR lane -->
-      <article class="card dcr d12">
-        <span class="num">12</span>
-        <h3>Create DCR</h3>
-        <ul>
-          <li>Receive DCR input from ERA</li>
-          <li>Create DCR</li>
-          <li>Attach impacted data</li>
-          <li>Assign supporting data</li>
-        </ul>
-      </article>
-
-      <article class="card dcr d13">
-        <span class="num">13</span>
-        <h3>DCR Review &amp; Analysis</h3>
-        <ul>
-          <li>Technical review</li>
-          <li>Design impact analysis</li>
-          <li>Risk assessment</li>
-          <li>Cost/schedule impact</li>
-          <li>Create review report</li>
-        </ul>
-      </article>
-
-      <article class="card dcr d14">
-        <span class="num">14</span>
-        <h3>Risk &amp; Cybersecurity Assessment</h3>
-        <ul>
-          <li>Risk assessment</li>
-          <li>Cybersecurity impact</li>
-          <li>Safety/compliance check</li>
-          <li>Cost/schedule impact</li>
-          <li>Recommendation</li>
-        </ul>
-      </article>
-
-      <div class="decision dcr-decision">
-        <span>DCR Decision<br />approve or<br />reject?</span>
-      </div>
-
-      <article class="card dcr d15">
-        <span class="num">15</span>
-        <h3>Approved DCR to OMS</h3>
-        <ul>
-          <li>Send approved DCR</li>
-          <li>Transmit implementation package</li>
-          <li>Update CAR status</li>
-        </ul>
-      </article>
-
-      <article class="card dcr d16">
-        <span class="num">16</span>
-        <h3>Rejected DCR</h3>
-        <ul>
-          <li>Send rejection reason</li>
-          <li>Return to ERA</li>
-          <li>Update CAR status</li>
-        </ul>
-      </article>
-
-      <!-- OMS lane -->
-      <article class="card oms o17">
-        <span class="num">17</span>
-        <h3>Receive Approved DCR</h3>
-        <ul>
-          <li>Receive DCR package</li>
-          <li>Review scope</li>
-          <li>Plan implementation</li>
-          <li>Assign resources</li>
-        </ul>
-      </article>
-
-      <article class="card oms o18">
-        <span class="num">18</span>
-        <h3>Implement Change</h3>
-        <ul>
-          <li>Execute implementation</li>
-          <li>Update documents</li>
-          <li>Update BOM/drawings/code</li>
-          <li>Follow work instructions</li>
-        </ul>
-      </article>
-
-      <article class="card oms o19">
-        <span class="num">19</span>
-        <h3>Verify Implementation</h3>
-        <ul>
-          <li>Verify implementation</li>
-          <li>Perform testing</li>
-          <li>Collect evidence</li>
-          <li>Ensure compliance</li>
-        </ul>
-      </article>
-
-      <article class="card oms o20">
-        <span class="num">20</span>
-        <h3>Close Implementation</h3>
-        <ul>
-          <li>Complete implementation</li>
-          <li>Archive records</li>
-          <li>Update records</li>
-          <li>Mark implementation closed</li>
-        </ul>
-      </article>
-
-
-      <!-- SVG arrows overlay. Coordinates match the fixed 1600x1290 diagram canvas. -->
-      <svg class="arrows" viewBox="0 0 1600 1290" preserveAspectRatio="none" aria-hidden="true">
-        <!-- ============ MAIN PROCESS FLOW (solid) ============ -->
-
-        <!-- CMS: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -->
-        <path class="blue" d="M361 325 L391 325" />
-        <path class="blue" d="M601 325 L631 325" />
-        <path class="blue" d="M841 325 L871 325" />
-        <path class="blue" d="M1081 325 L1111 325" />
-        <path class="blue" d="M1321 325 L1351 325" />
-
-        <!-- CMS step 3 -> ERA step 7 handoff -->
-        <path class="green" d="M736 379 L736 432 L256 432 L256 483" />
-        <text class="svg-label green-text" x="372" y="425">Requirement action</text>
-
-        <!-- ERA: 7 -> 8 -> 9 -> decision; No -> 11 -->
-        <path class="green" d="M361 568 L391 568" />
-        <path class="green" d="M601 568 L631 568" />
-        <path class="green" d="M841 568 L878 568" />
-        <path class="green" d="M1036 568 L1111 568" />
-        <text class="svg-label green-text" x="1048" y="560">No</text>
-
-        <!-- ERA decision: Yes -> DCR step 12 -->
-        <path class="green" d="M957 647 L957 695 L256 695 L256 733" />
-        <text class="svg-label green-text" x="963" y="675">Yes</text>
-
-        <!-- DCR: 12 -> 13 -> 14 -> decision; Approved -> 15 -->
-        <path class="orange" d="M361 818 L391 818" />
-        <path class="orange" d="M601 818 L631 818" />
-        <path class="orange" d="M841 818 L878 818" />
-        <path class="orange" d="M1036 818 L1111 818" />
-        <text class="svg-label orange-text" x="1043" y="810">Approved</text>
-
-        <!-- DCR decision: Rejected -> step 16 -->
-        <path class="orange" d="M957 897 L957 927" />
-        <text class="svg-label orange-text" x="884" y="916">Rejected</text>
-
-        <!-- DCR step 15 -> OMS step 17 handoff -->
-        <path class="purple" d="M1216 856 L1216 1045 L256 1045 L256 1063" />
-
-        <!-- OMS: 17 -> 18 -> 19 -> 20 -->
-        <path class="purple" d="M361 1131 L391 1131" />
-        <path class="purple" d="M601 1131 L631 1131" />
-        <path class="purple" d="M841 1131 L871 1131" />
-
-        <!-- ============ EXPLICIT RETURNS FROM REJECTED DCR (dashed) ============ -->
-
-        <!-- Step 16 -> ERA step 11 (right margin) -->
-        <path class="orange dashed" d="M1092 960 L1395 960 L1395 568 L1321 568" />
-
-        <!-- Step 16 -> CMS step 5 (far-right channel) -->
-        <path class="blue dashed" d="M1092 985 L1430 985 L1430 448 L1216 448 L1216 379" />
-
-        <!-- ============ FEEDBACK LOOPS (dashed): source -> callout box -> destination ============ -->
-
-        <!-- Loop 2 (blue): DCR 12 -> [box] -> CMS 5 -->
-        <path class="blue dashed" d="M151 790 L132 790 L132 150 L200 150 L200 101" />
-        <path class="blue dashed" d="M290 101 L290 150 L1216 150 L1216 271" />
-
-        <!-- Loop 3 (purple): OMS 19 -> [box] -> ERA 11 -->
-        <path class="purple dashed" d="M736 1063 L736 1045 L616 1045 L616 180 L560 180 L560 113" />
-        <path class="purple dashed" d="M650 113 L650 180 L1340 180 L1340 660 L1216 660 L1216 620" />
-
-        <!-- Loop 4 (blue): OMS 20 -> [box] -> CMS 6 -->
-        <path class="blue dashed" d="M1081 1131 L1100 1131 L1100 210 L1000 210 L1000 113" />
-        <path class="blue dashed" d="M1050 113 L1050 210 L1480 210 L1480 271" />
-
-        <!-- Loop 1 (green): ERA 11 -> [box] -> CMS 6 -->
-        <path class="green dashed" d="M1321 568 L1565 568 L1565 240 L1300 240 L1300 101" />
-        <path class="green dashed" d="M1380 101 L1380 230 L1400 230 L1400 271" />
-
-        <!-- ============ ARROWHEADS (explicit triangles) ============ -->
-        <!-- CMS main flow (right) -->
-        <polygon class="head blue" points="391,325 378,318 378,332" />
-        <polygon class="head blue" points="631,325 618,318 618,332" />
-        <polygon class="head blue" points="871,325 858,318 858,332" />
-        <polygon class="head blue" points="1111,325 1098,318 1098,332" />
-        <polygon class="head blue" points="1351,325 1338,318 1338,332" />
-        <!-- CMS->ERA handoff (down) -->
-        <polygon class="head green" points="256,483 249,470 263,470" />
-        <!-- ERA main flow (right) -->
-        <polygon class="head green" points="391,568 378,561 378,575" />
-        <polygon class="head green" points="631,568 618,561 618,575" />
-        <polygon class="head green" points="878,568 865,561 865,575" />
-        <polygon class="head green" points="1111,568 1098,561 1098,575" />
-        <!-- ERA decision Yes (down) -->
-        <polygon class="head green" points="256,733 249,720 263,720" />
-        <!-- DCR main flow (right) -->
-        <polygon class="head orange" points="391,818 378,811 378,825" />
-        <polygon class="head orange" points="631,818 618,811 618,825" />
-        <polygon class="head orange" points="878,818 865,811 865,825" />
-        <polygon class="head orange" points="1111,818 1098,811 1098,825" />
-        <!-- DCR decision Rejected (down) -->
-        <polygon class="head orange" points="957,927 950,914 964,914" />
-        <!-- DCR->OMS handoff (down) -->
-        <polygon class="head purple" points="256,1063 249,1050 263,1050" />
-        <!-- OMS main flow (right) -->
-        <polygon class="head purple" points="391,1131 378,1124 378,1138" />
-        <polygon class="head purple" points="631,1131 618,1124 618,1138" />
-        <polygon class="head purple" points="871,1131 858,1124 858,1138" />
-        <!-- Rejected DCR returns -->
-        <polygon class="head orange" points="1321,568 1334,561 1334,575" />
-        <polygon class="head blue" points="1216,379 1209,392 1223,392" />
-        <!-- Feedback loops: into callout box (up) and into destination -->
-        <polygon class="head blue" points="200,101 193,114 207,114" />
-        <polygon class="head blue" points="1216,271 1209,258 1223,258" />
-        <polygon class="head purple" points="560,113 553,126 567,126" />
-        <polygon class="head purple" points="1216,620 1209,633 1223,633" />
-        <polygon class="head blue" points="1000,113 993,126 1007,126" />
-        <polygon class="head blue" points="1480,271 1473,258 1487,258" />
-        <polygon class="head green" points="1300,101 1293,114 1307,114" />
-        <polygon class="head green" points="1400,271 1393,258 1407,258" />
+      <svg class="arrows" viewBox="0 0 7500 1200" preserveAspectRatio="none" aria-hidden="true">
+        <path class="blue" d="M 405 430 L 495 430" />
+        <path class="blue" d="M 705 430 L 795 430" />
+        <path class="blue" d="M 1005 430 L 1125 430" />
+        <path class="blue" d="M 1335 430 L 1474 430" />
+        <path class="blue dashed" d="M 900 398 L 900 386" />
+        <path class="blue dashed" d="M 986 300 L 1152.5 300" />
+        <path class="blue" d="M 1646 430 L 1785 430" />
+        <path class="blue" d="M 1560 516 L 1560 650 L 1830 650 L 1830 713" />
+        <path class="blue" d="M 1995 430 L 2115 430" />
+        <path class="blue" d="M 2325 430 L 2464 430" />
+        <path class="blue dashed" d="M 2550 516 L 2550 534 L 1890 534 L 1890 462" />
+        <path class="blue" d="M 2550 344 L 2550 252 L 6660 252 L 6660 398" />
+        <path class="blue" d="M 1830 713 L 1830 650 L 1980 650 L 1980 608" />
+        <path class="blue" d="M 1980 608 L 1980 662 L 2160 662 L 2160 713" />
+        <path class="green" d="M 2265 745 L 2385 745" />
+        <path class="green" d="M 2595 745 L 2734 745" />
+        <path class="red" d="M 2820 831 L 2820 882" />
+        <path class="green" d="M 2906 745 L 3075 745" />
+        <path class="blue" d="M 3180 713 L 3180 650 L 3180 650 L 3180 608" />
+        <path class="blue" d="M 3180 608 L 3180 662 L 3510 662 L 3510 713" />
+        <path class="green" d="M 3615 745 L 3855 745" />
+        <path class="green" d="M 4065 745 L 4264 745" />
+        <path class="red" d="M 4436 745 L 4710 745 L 4710 882" />
+        <path class="green" d="M 4350 831 L 4350 963" />
+        <path class="purple dashed" d="M 4350 659 L 4350 618 L 3960 618 L 3960 588" />
+        <path class="purple" d="M 4455 995 L 4575 995" />
+        <path class="purple" d="M 4785 995 L 4905 995" />
+        <path class="purple" d="M 5115 995 L 5235 995" />
+        <path class="purple" d="M 5340 963 L 5340 905 L 5550 905 L 5550 777" />
+        <path class="green" d="M 5655 745 L 5775 745" />
+        <path class="green" d="M 5985 745 L 6124 745" />
+        <path class="green" d="M 6210 659 L 6210 650 L 6360 650 L 6360 608" />
+        <path class="green" d="M 6124 745 L 6060 745 L 6060 608" />
+        <path class="green dashed" d="M 6060 552 L 6060 274 L 3510 274 L 3510 662 L 3510 713" />
+        <path class="blue" d="M 6467.5 580 L 6660 580 L 6660 462" />
+        <path class="blue" d="M 6765 430 L 6904 430" />
+        <path class="blue" d="M 7076 430 L 7187.5 430" />
+        <path class="blue dashed" d="M 6990 516 L 6990 1095 L 900 1095 L 900 462" />
+        <polygon class="head blue" points="495,430 482,437 482,423" />
+        <polygon class="head blue" points="795,430 782,437 782,423" />
+        <polygon class="head blue" points="1125,430 1112,437 1112,423" />
+        <polygon class="head blue" points="1474,430 1461,437 1461,423" />
+        <polygon class="head blue" points="900,386 907,399 893,399" />
+        <polygon class="head blue" points="1152.5,300 1139.5,307 1139.5,293" />
+        <polygon class="head blue" points="1785,430 1772,437 1772,423" />
+        <polygon class="head blue" points="1830,713 1823,700 1837,700" />
+        <polygon class="head blue" points="2115,430 2102,437 2102,423" />
+        <polygon class="head blue" points="2464,430 2451,437 2451,423" />
+        <polygon class="head blue" points="1890,462 1897,475 1883,475" />
+        <polygon class="head blue" points="6660,398 6653,385 6667,385" />
+        <polygon class="head blue" points="1980,608 1987,621 1973,621" />
+        <polygon class="head blue" points="2160,713 2153,700 2167,700" />
+        <polygon class="head green" points="2385,745 2372,752 2372,738" />
+        <polygon class="head green" points="2734,745 2721,752 2721,738" />
+        <polygon class="head red" points="2820,882 2813,869 2827,869" />
+        <polygon class="head green" points="3075,745 3062,752 3062,738" />
+        <polygon class="head blue" points="3180,608 3187,621 3173,621" />
+        <polygon class="head blue" points="3510,713 3503,700 3517,700" />
+        <polygon class="head green" points="3855,745 3842,752 3842,738" />
+        <polygon class="head green" points="4264,745 4251,752 4251,738" />
+        <polygon class="head red" points="4710,882 4703,869 4717,869" />
+        <polygon class="head green" points="4350,963 4343,950 4357,950" />
+        <polygon class="head purple" points="3960,588 3967,601 3953,601" />
+        <polygon class="head purple" points="4575,995 4562,1002 4562,988" />
+        <polygon class="head purple" points="4905,995 4892,1002 4892,988" />
+        <polygon class="head purple" points="5235,995 5222,1002 5222,988" />
+        <polygon class="head purple" points="5550,777 5557,790 5543,790" />
+        <polygon class="head green" points="5775,745 5762,752 5762,738" />
+        <polygon class="head green" points="6124,745 6111,752 6111,738" />
+        <polygon class="head green" points="6360,608 6367,621 6353,621" />
+        <polygon class="head green" points="6060,608 6067,621 6053,621" />
+        <polygon class="head green" points="3510,713 3503,700 3517,700" />
+        <polygon class="head blue" points="6660,462 6667,475 6653,475" />
+        <polygon class="head blue" points="6904,430 6891,437 6891,423" />
+        <polygon class="head blue" points="7187.5,430 7174.5,437 7174.5,423" />
+        <polygon class="head blue" points="900,462 907,475 893,475" />
+        <text class="svg-label blue-text" x="1078" y="292">Yes</text>
+        <text class="svg-label blue-text" x="1712" y="418">No</text>
+        <text class="svg-label blue-text" x="1505" y="644">Yes</text>
+        <text class="svg-label blue-text" x="2240" y="528">No</text>
+        <text class="svg-label blue-text" x="2610" y="244">Yes</text>
+        <text class="svg-label red-text" x="2838" y="836">Yes</text>
+        <text class="svg-label green-text" x="3012" y="735">No</text>
+        <text class="svg-label red-text" x="4478" y="735">Yes</text>
+        <text class="svg-label green-text" x="4368" y="880">No</text>
+        <text class="svg-label purple-text" x="3690" y="612">log DCR</text>
+        <text class="svg-label purple-text" x="5358" y="898">verification data</text>
+        <text class="svg-label green-text" x="6228" y="648">Yes</text>
+        <text class="svg-label green-text" x="5980" y="690">No</text>
+        <text class="svg-label green-text" x="4610" y="266">redesign</text>
+        <text class="svg-label blue-text" x="6908" y="418">Yes</text>
+        <text class="svg-label blue-text" x="6928" y="560">No</text>
       </svg>
     </section>
+    </div>
   </main>
+
+  <script>
+    (function () {
+      var DW = 7500, DH = 1200, PAD = 48;
+      var btn = document.getElementById('fitToggle');
+      var stage = document.querySelector('.diagram-stage');
+      var diagram = document.querySelector('.diagram');
+      var fit = false;
+      function applyFit() {
+        var s = Math.min(1, (window.innerWidth - PAD) / DW);
+        diagram.style.transformOrigin = 'top left';
+        diagram.style.transform = 'scale(' + s + ')';
+        stage.style.width = (DW * s) + 'px';
+        stage.style.height = (DH * s) + 'px';
+      }
+      function clearFit() { diagram.style.transform = ''; stage.style.width = ''; stage.style.height = ''; }
+      function setMode(on) {
+        fit = on;
+        document.body.classList.toggle('fit-mode', fit);
+        btn.setAttribute('aria-pressed', String(fit));
+        btn.textContent = fit ? 'Actual size' : 'Fit to screen';
+        if (fit) applyFit(); else clearFit();
+      }
+      btn.addEventListener('click', function () { setMode(!fit); });
+      window.addEventListener('resize', function () { if (fit) applyFit(); });
+    })();
+  </script>
 </body>
 </html>
